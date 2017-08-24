@@ -9,6 +9,7 @@ public class Card : MonoBehaviour {
 	public string cardTitle; //Name of the card
 	public int staminaCost = 1; //Cost of stamina to play card
 	public int damage = 1; //Damge dealt if connect
+	public int charges = 1; //Amount of times a card can be used before it is destroyed
 	public PunchType cardType; // Type of card
 	public Image cardImage; //Image to be displayed on card
 
