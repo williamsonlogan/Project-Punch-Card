@@ -15,7 +15,13 @@ public class Card : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		Card tempcard = LoadCSV.Load("./Assets/Data/testdeck.csv");
+		cardTitle = tempcard.cardTitle;
+		staminaCost = tempcard.staminaCost;
+		damage = tempcard.damage;
+		charges = tempcard.charges;
+		cardType = tempcard.cardType;
+		cardImage = tempcard.cardImage;
 	}
 	
 	// Update is called once per frame
