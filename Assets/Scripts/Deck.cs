@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
 
-    // Static Members
-    private static System.Random _rng;
-
     // Private Members
     private Stack<Card> _deck;
+    private static System.Random _rng;
 
     // Public Members
     int Size { get { return _deck.Count; } }
@@ -22,34 +20,34 @@ public class Deck : MonoBehaviour {
     }
 
     // Public Functions
-    void Push(Card _card)
+    public void Push(Card card)
     {
-        _deck.Push(_card);
+        _deck.Push(card);
     }
 
-    Card Pop()
+    public Card Pop()
     {
         return _deck.Pop();
     }
 
     // Based off the Fisher-Yates shuffle
-    void Shuffle()
+    public void Shuffle()
     {
-        List<Card> shuffled_deck = new List<Card>(_deck);
+        List<Card> shuffledDeck = new List<Card>(_deck);
         _deck.Clear();
 
-        int count = shuffled_deck.Count;
+        int count = shuffledDeck.Count;
         while (count > 1)
         {
             --count;
-            int rand_index = _rng.Next(count);
+            int randIndex = _rng.Next(count);
 
-            Card swap = shuffled_deck[count];
-            shuffled_deck[count] = shuffled_deck[rand_index];
-            shuffled_deck[rand_index] = swap;
+            Card swap = shuffledDeck[count];
+            shuffledDeck[count] = shuffledDeck[randIndex];
+            shuffledDeck[randIndex] = swap;
         }
 
-        foreach (Card card in shuffled_deck)
+        foreach (Card card in shuffledDeck)
             _deck.Push(card);
     }
 
