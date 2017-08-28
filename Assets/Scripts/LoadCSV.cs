@@ -8,7 +8,7 @@ public static class LoadCSV
 {
 	public static Card Load (string file)
 	{
-		Card returnCard = new Card ();
+		Card returnCard = new Card();
 		string loadedString;
 		StreamReader sr = new StreamReader (file);
 		loadedString = sr.ReadLine ();
@@ -34,7 +34,7 @@ public static class LoadCSV
 				returnCard.cardType = (PunchType)System.Convert.ToInt32 (split [i]);
 				break;
 			case 5:
-				returnCard.cardImage.sprite = loadImage (split [i]);
+				returnCard.cardImage = loadImage (split [i]);
 				break;
 			default:
 				Debug.Log ("THIS SHOULDNT HAPPEN!!!! BAD!!");
