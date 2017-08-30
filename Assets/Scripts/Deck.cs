@@ -8,11 +8,11 @@ public class Deck : MonoBehaviour {
     private static System.Random _rng;
 
     // Public Members
-    int Size { get { return _deck.Count; } }
-    string Title;
+    public int Size { get { return _deck.Count; } }
+    public string Title;
 
     // Constructors
-    Deck(string title, int size = 0)
+    public Deck(string title, int size = 0)
     {
         Title = title;
         _deck = new Stack<Card>(size);
