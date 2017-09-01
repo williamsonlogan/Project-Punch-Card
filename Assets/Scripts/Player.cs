@@ -5,12 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     Deck PlayerDeck;
-    Hand PlayerHand;
+    GameObject _handContainer;
 
 	/// <summary>
     /// The player start
     /// </summary>
 	void Start () {
+        _handContainer = GameObject.Find("HandContainer");
+
         loadDeckFromServer();
         dealHand();
 	}
@@ -21,7 +23,7 @@ public class Player : MonoBehaviour {
     private void loadDeckFromServer()
     {
         // Grab Deck from the server - Currently only grabs from local CSV
-        PlayerDeck = LoadCSV.Load("testdeck");
+        PlayerDeck = LoadCSV.Load("Assets/Data/testdeck.csv");
     }
 
     /// <summary>
@@ -30,6 +32,11 @@ public class Player : MonoBehaviour {
     private void dealHand()
     {
         for (int i = 0; i < 5 && PlayerDeck.Size > 0; ++i)
-            PlayerHand.DrawCard(PlayerDeck);
+        {
+            Card card = PlayerDeck.Pop();
+            GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
+            go.GetComponent<Card>().Set(card);
+            go.transform.parent = _handContainer.transform;
+        }
     }
 }

@@ -16,36 +16,42 @@ public static class LoadCSV
 
         while ((loadedString = sr.ReadLine()) != null)
         {
-            Card readCard = new Card();
             string[] split = loadedString.Split(delim);
+
+            string title = "";
+            int cost = 0, damage = 0, charges = 0;
+            PunchType type = 0;
+            Sprite sprite = null;
 
             for (int i = 0; i < split.GetLength(0); i++)
             {
                 switch (i)
                 {
                     case 0:
-                        readCard.cardTitle = split[i];
+                        title = split[i];
                         break;
                     case 1:
-                        readCard.staminaCost = System.Convert.ToInt32(split[i]);
+                        cost = System.Convert.ToInt32(split[i]);
                         break;
                     case 2:
-                        readCard.damage = System.Convert.ToInt32(split[i]);
+                        damage = System.Convert.ToInt32(split[i]);
                         break;
                     case 3:
-                        readCard.charges = System.Convert.ToInt32(split[i]);
+                        charges = System.Convert.ToInt32(split[i]);
                         break;
                     case 4:
-                        readCard.cardType = (PunchType)System.Convert.ToInt32(split[i]);
+                        type = (PunchType)System.Convert.ToInt32(split[i]);
                         break;
                     case 5:
-                        readCard.cardImage = loadImage(split[i]);
+                        sprite = loadImage(split[i]);
                         break;
                     default:
                         Debug.Log("THIS SHOULDNT HAPPEN!!!! BAD!!");
                         break;
                 }
             }
+
+            Card readCard = new Card(title, cost, damage, charges, type, sprite);
 
             returnDeck.Push(readCard);
         }

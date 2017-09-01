@@ -42,16 +42,4 @@ public class Hand : MonoBehaviour
         Card removed = Cards[0];
         Cards.Remove(removed);
     }
-
-    /*
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    */
 }
