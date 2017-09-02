@@ -31,5 +31,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		this.transform.SetParent (returnParent);
 
 		GetComponent<CanvasGroup> ().blocksRaycasts = true;
+
+		if (returnParent.tag == "Table")
+			this.enabled = false;
 	}
 }
