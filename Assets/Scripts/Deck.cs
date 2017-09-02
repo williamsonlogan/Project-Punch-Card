@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour {
+public class Deck {
 
     // Private Members
     private Stack<Card> _deck;
