@@ -1,17 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
 
     Deck PlayerDeck;
     GameObject _handContainer;
+    public bool IsOppPlayer;
 
 	/// <summary>
     /// The player start
     /// </summary>
 	void Start () {
-        _handContainer = GameObject.Find("HandContainer");
+        if (!IsOppPlayer)
+            _handContainer = GameObject.Find("HandContainer");
+        else
+            _handContainer = GameObject.Find("OppHandContainer");
 
         loadDeckFromServer();
         dealHand();
@@ -35,8 +37,8 @@ public class Player : MonoBehaviour {
         {
             Card card = PlayerDeck.Pop();
             GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
-            go.GetComponent<Card>().Set(card);
-            go.transform.parent = _handContainer.transform;
+            go.GetComponent<UICard>().cardInfo = card;
+            go.transform.SetParent(_handContainer.transform);
         }
     }
 }
