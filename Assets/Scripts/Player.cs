@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
     private void loadDeckFromServer()
     {
         // Grab Deck from the server - Currently only grabs from local CSV
-        PlayerDeck = LoadCSV.Load("Assets/Data/testdeck.csv");
+		PlayerDeck = LoadCSV.Load(Resources.Load<TextAsset>("Data/testdeck"));
     }
 
     /// <summary>
@@ -39,6 +39,11 @@ public class Player : MonoBehaviour {
 			GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
             go.GetComponent<UICard>().cardInfo = card;
             go.transform.SetParent(_handContainer.transform, false);
+
+			if(_handContainer == GameObject.Find("OppHandContainer"))
+			{
+				go.GetComponent<Draggable> ().enabled = false;
+			}
         }
     }
 }

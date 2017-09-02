@@ -3,12 +3,12 @@ using System.IO;
 
 public static class LoadCSV
 {
-	public static Deck Load (string file)
+	public static Deck Load (TextAsset file)
 	{
 		Deck returnDeck = new Deck("", 10);
 
 		string loadedString;
-		StreamReader sr = new StreamReader (file);
+		StringReader sr = new StringReader (file.text);
 		loadedString = sr.ReadLine ();
 		char[] delim = { ',' };
 
