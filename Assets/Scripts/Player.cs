@@ -36,9 +36,9 @@ public class Player : MonoBehaviour {
         for (int i = 0; i < 5 && PlayerDeck.Size > 0; ++i)
         {
             Card card = PlayerDeck.Pop();
-            GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
+			GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
             go.GetComponent<UICard>().cardInfo = card;
-            go.transform.SetParent(_handContainer.transform);
+            go.transform.SetParent(_handContainer.transform, false);
         }
     }
 }
