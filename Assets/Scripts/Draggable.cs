@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	public Transform returnParent = null;
+	float returnDepth;
 
 	public void OnBeginDrag(PointerEventData eventData) 
 	{
@@ -34,5 +35,20 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 		if (returnParent.tag == "Table")
 			this.enabled = false;
+	}
+
+	public void OnMouseOver()
+	{
+		Debug.Log ("Mouse Over");
+		returnDepth = this.transform.position.z;
+		returnParent = this.transform.parent;
+		this.transform.SetParent (this.transform.parent.parent);
+		this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, -5);
+	}
+
+	public void OnMouseExit()
+	{
+		this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, returnDepth);
+		this.transform.SetParent (returnParent);
 	}
 }
