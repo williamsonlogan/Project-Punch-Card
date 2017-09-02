@@ -1,16 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Matchmaker : MonoBehaviour {
 
-    public GameObject Player;
-    public GameObject OppPlayer;
+    GameObject Player;
+    GameObject OppPlayer;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
+    int NumRounds;
+
+	// Use this for initialization
+	void Start () {
+        Player = (GameObject)Instantiate(Resources.Load("Prefabs/Player"));
+        Player.transform.parent = GameObject.Find("Canvas").transform;
+        Player.GetComponent<Player>().IsOppPlayer = false;
+
+        OppPlayer = (GameObject)Instantiate(Resources.Load("Prefabs/Player"));
+        OppPlayer.transform.parent = GameObject.Find("Canvas").transform;
+        OppPlayer.GetComponent<Player>().IsOppPlayer = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
