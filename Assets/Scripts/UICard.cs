@@ -29,6 +29,7 @@ public class UICard : MonoBehaviour {
 
     // UI Variables
     public Image UIImage; //Image that exists in physical space
+	public Image UIBorder; //Color of the boarder in physical space
 	public Text UITitle; //Text that exists in physical space
 	public Text UICost; //^^
 
@@ -37,5 +38,11 @@ public class UICard : MonoBehaviour {
         UIImage.sprite = cardInfo.cardImage;
         UITitle.text = cardInfo.cardTitle;
         UICost.text = cardInfo.staminaCost.ToString();
+		if (cardInfo.cardType == PunchType.Power) {
+			UIBorder.sprite = Resources.Load <Sprite> ("Sprites/cardframepower");
+		} else {
+			UIBorder.sprite = Resources.Load <Sprite> ("Sprites/cardframespeed");
+		}
+
     }
 }
