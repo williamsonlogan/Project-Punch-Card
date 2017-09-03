@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
     Deck PlayerDeck;
     GameObject _handContainer;
     public bool IsOppPlayer;
+
+	//Player Properties
+	public Image UIImage;
+	int stamina;
+	int KOMeter;
 
 	/// <summary>
     /// The player start
