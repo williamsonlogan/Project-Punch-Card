@@ -35,6 +35,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		//Debug.Log ("OnDrag");
 
 		this.transform.position = eventData.position;
+		this.transform.localScale = new Vector2 (1.5f, 1.5f);
 
 		if (placeholder.transform.parent != placeholderParent)
 			placeholder.transform.SetParent (placeholderParent);
@@ -44,13 +45,14 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	{
 		Debug.Log ("OnEndDrag");
 
+		this.transform.localScale = new Vector3 (1, 1, 1);
+
 		this.transform.SetParent (returnParent);
 		this.transform.SetSiblingIndex (placeholder.transform.GetSiblingIndex ());
 
 		GetComponent<CanvasGroup> ().blocksRaycasts = true;
 
-		if (returnParent.tag == "Table") 
-		{
+		if (returnParent.tag == "Table") {
 			this.enabled = false;
 		}
 
