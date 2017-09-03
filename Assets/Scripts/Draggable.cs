@@ -35,7 +35,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		//Debug.Log ("OnDrag");
 
 		this.transform.position = eventData.position;
-		this.transform.localScale = new Vector2 (1.5f, 1.5f);
+		this.transform.localScale = new Vector2 (1.25f, 1.25f);
 
 		if (placeholder.transform.parent != placeholderParent)
 			placeholder.transform.SetParent (placeholderParent);
