@@ -43,6 +43,5 @@ public class UICard : MonoBehaviour {
 		} else {
 			UIBorder.sprite = Resources.Load <Sprite> ("Sprites/cardframespeed");
 		}
-
     }
 }

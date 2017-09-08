@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
+
+    // UI Variables
+    public Text StaminaText;
 
     Deck PlayerDeck;
     GameObject _handContainer;
-    public bool IsOppPlayer;
 
 	//Player Properties
 	public Image UIImage;
@@ -16,14 +19,19 @@ public class Player : MonoBehaviour {
     /// The player start
     /// </summary>
 	void Start () {
-        if (!IsOppPlayer)
-            _handContainer = GameObject.Find("HandContainer");
+        if (isLocalPlayer)
+            _handContainer = GameObject.FindGameObjectWithTag("HandContainer");
         else
-            _handContainer = GameObject.Find("OppHandContainer");
+            _handContainer = GameObject.FindGameObjectWithTag("OppHandContainer");
 
         loadDeckFromServer();
         dealHand();
 	}
+
+    public override void OnStartLocalPlayer()
+    {
+        this.transform.SetParent(GameObject.Find)
+    }
 
     /// <summary>
     /// Will connect to Photon server and load the deck the player chose
@@ -46,10 +54,8 @@ public class Player : MonoBehaviour {
             go.GetComponent<UICard>().cardInfo = card;
             go.transform.SetParent(_handContainer.transform, false);
 
-			if(_handContainer == GameObject.Find("OppHandContainer"))
-			{
+			if(!isLocalPlayer)
 				go.GetComponent<Draggable> ().enabled = false;
-			}
         }
     }
 }

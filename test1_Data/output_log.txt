@@ -1,0 +1,67 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 520 (ID=0x1916)
+    Vendor:   Intel
+    VRAM:     2140 MB
+    Driver:   21.20.16.4590
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\Hunter\Documents\GitHub\Project-Punch-Card\test1_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.065 seconds
+OnLevelWasLoaded was found on PhotonHandler
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 380)
+
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.223461 ms
+DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
+ 
+(Filename:  Line: 481)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: e88 -> priority: 1 
+  Thread -> id: 1818 -> priority: 1 
+Drag Begin
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnDrop to RightPlay
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnEndDrag
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Drag Begin
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnDrop to LeftPlay
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnEndDrag
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
