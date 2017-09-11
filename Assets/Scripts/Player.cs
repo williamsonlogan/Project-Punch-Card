@@ -6,31 +6,27 @@ public class Player : NetworkBehaviour {
 
     // UI Variables
     public Text StaminaText;
+    public GameObject HandContainer;
 
     Deck PlayerDeck;
-    GameObject _handContainer;
 
 	//Player Properties
 	public Image UIImage;
 	int stamina;
 	int KOMeter;
 
-	/// <summary>
-    /// The player start
-    /// </summary>
-	void Start () {
-        if (isLocalPlayer)
-            _handContainer = GameObject.FindGameObjectWithTag("HandContainer");
-        else
-            _handContainer = GameObject.FindGameObjectWithTag("OppHandContainer");
+    // Prefabs
+    public GameObject CardSpawnerPrefab;
 
+	void Start ()
+    {
+        this.transform.SetParent(GameObject.Find("Canvas").transform);
         loadDeckFromServer();
-        dealHand();
-	}
+        dealHand(Vector3.zero);
+    }
 
     public override void OnStartLocalPlayer()
     {
-        this.transform.SetParent(GameObject.Find)
     }
 
     /// <summary>
@@ -45,17 +41,12 @@ public class Player : NetworkBehaviour {
     /// <summary>
     /// Draws 5 cards from the deck loaded from the server
     /// </summary>
-    private void dealHand()
+    private void dealHand(Vector3 offset)
     {
+        CardSpawner cardSpawner = CardSpawnerPrefab.GetComponent<CardSpawner>();
         for (int i = 0; i < 5 && PlayerDeck.Size > 0; ++i)
         {
-            Card card = PlayerDeck.Pop();
-			GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
-            go.GetComponent<UICard>().cardInfo = card;
-            go.transform.SetParent(_handContainer.transform, false);
-
-			if(!isLocalPlayer)
-				go.GetComponent<Draggable> ().enabled = false;
+            cardSpawner.SpawnCard(PlayerDeck.Pop(), HandContainer.transform, isLocalPlayer);
         }
     }
 }
