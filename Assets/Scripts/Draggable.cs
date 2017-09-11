@@ -6,16 +6,17 @@ using UnityEngine.EventSystems;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
-	public Transform returnParent = null;
+	public Transform returnParent = null; //Parent that a card will return to
 	float returnDepth;
-	GameObject placeholder = null;
+	GameObject placeholder = null; //Card that holds an empty space in the hand
 	bool hovering = false;
-	public Transform placeholderParent = null;
+	public Transform placeholderParent = null; //Parent of the placeholder
 
 	public void OnBeginDrag(PointerEventData eventData) 
 	{
 		Debug.Log ("Drag Begin");
 
+		//Spawn placeholder and set its parent to the cards parent
 		placeholder = new GameObject ();
 		placeholder.transform.SetParent (this.transform.parent);
 		LayoutElement le = placeholder.AddComponent<LayoutElement> ();
@@ -23,6 +24,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		placeholder.transform.SetSiblingIndex (this.transform.GetSiblingIndex ());
 		this.transform.SetAsLastSibling ();
 
+		//Set return parent
 		returnParent = this.transform.parent;
 		placeholderParent = returnParent;
 		this.transform.SetParent (this.transform.parent.parent);
@@ -34,10 +36,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	{
 		//Debug.Log ("OnDrag");
 
+		//Make card follow mouse, magnify its scale for readability
 		this.transform.position = eventData.position;
 		this.transform.localScale = new Vector2 (1.25f, 1.25f);
 
-		if (placeholder.transform.parent != placeholderParent)
+		if (placeholder.transform.parent != placeholderParent) //Safeguard to be sure parents are correct
 			placeholder.transform.SetParent (placeholderParent);
 	}
 
@@ -45,17 +48,18 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	{
 		Debug.Log ("OnEndDrag");
 
-		this.transform.localScale = new Vector3 (1, 1, 1);
+		this.transform.localScale = new Vector3 (1, 1, 1); //Reset scale to no longer be magnified
 
-		this.transform.SetParent (returnParent);
-		this.transform.SetSiblingIndex (placeholder.transform.GetSiblingIndex ());
+		this.transform.SetParent (returnParent); //Sets its parent to the appropriate container
+		this.transform.SetSiblingIndex (placeholder.transform.GetSiblingIndex ()); //Sets the order in the container
 
 		GetComponent<CanvasGroup> ().blocksRaycasts = true;
 
+		//Disables dragging after its placed on a tablezone
 		if (returnParent.tag == "Table") {
 			this.enabled = false;
 		}
 
-		Destroy (placeholder);
+		Destroy (placeholder); //Destroys blank space placeholder
 	}
 }
