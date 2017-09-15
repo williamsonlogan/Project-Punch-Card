@@ -3,23 +3,17 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    Deck PlayerDeck;
-    GameObject _handContainer;
-    public bool IsOppPlayer;
+    Deck _playerDeck;
+    public GameObject HandContainer;
 
 	//Player Properties
 	public Image UIImage;
 	int stamina;
 	int KOMeter;
 
-	/// <summary>
-    /// The player start
-    /// </summary>
 	void Start () {
-        if (!IsOppPlayer)
-            _handContainer = GameObject.Find("HandContainer");
-        else
-            _handContainer = GameObject.Find("OppHandContainer");
+        if (HandContainer == null)
+            HandContainer = GameObject.Find("OppHandContainer");
 
         loadDeckFromServer();
         dealHand();
@@ -31,7 +25,7 @@ public class Player : MonoBehaviour {
     private void loadDeckFromServer()
     {
         // Grab Deck from the server - Currently only grabs from local CSV
-		PlayerDeck = LoadCSV.Load(Resources.Load<TextAsset>("Data/testdeck"));
+		_playerDeck = LoadCSV.Load(Resources.Load<TextAsset>("Data/testdeck"));
     }
 
     /// <summary>
@@ -39,17 +33,14 @@ public class Player : MonoBehaviour {
     /// </summary>
     private void dealHand()
     {
-        for (int i = 0; i < 5 && PlayerDeck.Size > 0; ++i)
+        int deckSize = 5;
+        for (int i = 0; i < deckSize && _playerDeck.Size > 0; ++i)
         {
-            Card card = PlayerDeck.Pop();
+            Card card = _playerDeck.Pop();
 			GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/UICard"));
             go.GetComponent<UICard>().cardInfo = card;
-            go.transform.SetParent(_handContainer.transform, false);
-
-			if(_handContainer == GameObject.Find("OppHandContainer"))
-			{
-				go.GetComponent<Draggable> ().enabled = false;
-			}
+            go.transform.SetParent(HandContainer.transform, false);
+            go.GetComponent<Draggable>().enabled = true;
         }
     }
 }
