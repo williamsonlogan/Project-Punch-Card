@@ -2,17 +2,21 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class Draggable : Photon.MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	public Transform returnParent = null; //Parent that a card will return to
 	float returnDepth;
 	GameObject placeholder = null; //Card that holds an empty space in the hand
 	bool hovering = false;
 	public Transform placeholderParent = null; //Parent of the placeholder
+    int cardIndex;
 
 	public void OnBeginDrag(PointerEventData eventData) 
 	{
 		Debug.Log ("Drag Begin");
+
+        //Network translation
+        cardIndex = this.gameObject.transform.GetSiblingIndex();
 
 		//Spawn placeholder and set its parent to the cards parent
 		placeholder = new GameObject ();
@@ -55,6 +59,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 		//Disables dragging after its placed on a tablezone
 		if (returnParent.tag == "Table") {
+            Player localPlayer = GameObject.FindWithTag("Local Player").GetComponent<Player>();
+            localPlayer.UpdateOppHand(cardIndex, returnParent);
 			this.enabled = false;
 		}
 

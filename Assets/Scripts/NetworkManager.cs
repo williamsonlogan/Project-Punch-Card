@@ -3,6 +3,9 @@
 public class NetworkManager : MonoBehaviour
 {
 	PunTurnManager TurnManager;
+    GameObject oppHandContainer;
+    GameObject oppLeftContainer;
+    GameObject oppRightContainer;
 
     // Use this for initialization
     void Start() {
@@ -10,6 +13,10 @@ public class NetworkManager : MonoBehaviour
         
         // Pass Info from GUI selection to connect - later these selections will be passed to SpawnPlayer so that they have dekc /hand dealing info
 		TurnManager = this.GetComponent<PunTurnManager>();
+        oppHandContainer = GameObject.FindWithTag("OppHand");
+        oppLeftContainer = GameObject.Find("OppLeft");
+        oppRightContainer = GameObject.Find("OppRight");
+
         Connect();
     }
 
@@ -50,6 +57,7 @@ public class NetworkManager : MonoBehaviour
     void SpawnMyPlayer()
     {
         GameObject playerGO = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity, 0);
+        playerGO.tag = "Local Player";
         Player player = playerGO.GetComponent<Player>();
         player.HandContainer = GameObject.Find("HandContainer");
     }
