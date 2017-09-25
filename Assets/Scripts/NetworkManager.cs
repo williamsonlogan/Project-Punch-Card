@@ -2,11 +2,14 @@
 
 public class NetworkManager : MonoBehaviour
 {
+	PunTurnManager TurnManager;
+
     // Use this for initialization
     void Start() {
         // Start scene for selecting Champ/Deck and retrieve that information
         
         // Pass Info from GUI selection to connect - later these selections will be passed to SpawnPlayer so that they have dekc /hand dealing info
+		TurnManager = this.GetComponent<PunTurnManager>();
         Connect();
     }
 
