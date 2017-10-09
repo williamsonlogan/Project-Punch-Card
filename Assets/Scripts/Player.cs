@@ -7,6 +7,7 @@ public class Player : Photon.MonoBehaviour
     Deck _playerDeck;
     public GameObject HandContainer;
     PhotonView p;
+    public string playerID;
 
     GameObject oppHandContainer;
     GameObject oppLeftContainer;
@@ -16,6 +17,7 @@ public class Player : Photon.MonoBehaviour
     public Image UIImage;
     int stamina;
     int KOMeter;
+    public bool isMyTurn;
 
     void Start()
     {

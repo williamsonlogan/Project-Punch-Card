@@ -49,6 +49,7 @@ public class NetworkManager : MonoBehaviour
 
         // Spawns player locally
         SpawnMyPlayer();
+        TurnManager.BeginTurn();
     }
 
     /// <summary>
